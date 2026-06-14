@@ -43,6 +43,8 @@ font_main = font.Font(None, 36)
 # --- ЗОБРАЖЕННЯ ----
 bg_image = image.load('bg.jpg')
 bg_image = transform.scale(bg_image, (WIDTH, HEIGHT))
+ball_image = image.load('ball.png')
+ball_image = transform.scale(ball_image, (20,20))
 # --- ЗВУКИ ---
 
 # --- ГРА ---
@@ -92,7 +94,7 @@ while True:
         screen.blit(bg_image, (0, 0))
         draw.rect(screen, (0, 255, 0), (20, game_state['paddles']['0'], 20, 100))
         draw.rect(screen, (255, 0, 255), (WIDTH - 40, game_state['paddles']['1'], 20, 100))
-        draw.circle(screen, (255, 255, 255), (game_state['ball']['x'], game_state['ball']['y']), 10)
+        screen.blit(ball_image, (game_state['ball']['x'] - 10, game_state['ball']['y'] - 10))
         score_text = font_main.render(f"{game_state['scores'][0]} : {game_state['scores'][1]}", True, (255, 255, 255))
         screen.blit(score_text, (WIDTH // 2 -25, 20))
 
