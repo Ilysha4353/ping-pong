@@ -48,6 +48,8 @@ ball_image = transform.scale(ball_image, (20,20))
 flag_image = image.load('flag.png')
 flag_image = transform.scale(flag_image, (200, 200))
 flag_image2 = transform.flip(flag_image, True, False)
+score_image = image.load('score.png')
+score_image = transform.scale(score_image, (350, 200))
 # --- ЗВУКИ ---
 
 # --- ГРА ---
@@ -97,11 +99,12 @@ while True:
         screen.blit(bg_image, (0, 0))
         screen.blit(flag_image, (20, HEIGHT - 220))
         screen.blit(flag_image2,(WIDTH - 200 - 20, HEIGHT - 220))
+        screen.blit(score_image, (WIDTH / 2 - 175, -75))
         draw.rect(screen, (0, 255, 0), (20, game_state['paddles']['0'], 20, 100))
         draw.rect(screen, (255, 0, 255), (WIDTH - 40, game_state['paddles']['1'], 20, 100))
         screen.blit(ball_image, (game_state['ball']['x'] - 10, game_state['ball']['y'] - 10))
-        score_text = font_main.render(f"{game_state['scores'][0]} : {game_state['scores'][1]}", True, (255, 255, 255))
-        screen.blit(score_text, (WIDTH // 2 -25, 20))
+        score_text = font_main.render(f"{game_state['scores'][0]}           :          {game_state['scores'][1]}", True, (255, 255, 255))
+        screen.blit(score_text, (WIDTH // 2 -50, 20))
 
         if game_state['sound_event']:
             if game_state['sound_event'] == 'wall_hit':
