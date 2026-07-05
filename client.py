@@ -52,6 +52,15 @@ score_image = image.load('score.png')
 score_image = transform.scale(score_image, (350, 200))
 # --- ЗВУКИ ---
 
+mixer.init()
+
+wall_hit_sfx = mixer.Sound("ballhit.mp3")
+platform_hit_sfx = mixer.Sound("popball.mp3")
+
+mixer.music.load("music lofi.mp3")
+mixer.music.set_volume(0.5)
+mixer.music.play(-1)
+
 # --- ГРА ---
 game_over = False
 winner = None
@@ -109,10 +118,10 @@ while True:
         if game_state['sound_event']:
             if game_state['sound_event'] == 'wall_hit':
                 # звук відбиття м'ячика від стін
-                pass
+                wall_hit_sfx.play()
             if game_state['sound_event'] == 'platform_hit':
                 # звук відбиття м'ячика від платформи
-                pass
+                platform_hit_sfx.play()
 
     else:
         wating_text = font_main.render(f"Очікування гравців...", True, (255, 255, 255))
